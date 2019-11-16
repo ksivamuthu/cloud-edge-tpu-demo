@@ -6,6 +6,7 @@ import numpy as np
 import sys
 import classify
 from PIL import Image
+import time
 
 from tflite_runtime.interpreter import Interpreter
 from tflite_runtime.interpreter import load_delegate
