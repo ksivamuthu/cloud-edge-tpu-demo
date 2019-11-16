@@ -89,7 +89,8 @@ while(True):
     interpreter.invoke()
     inference_time = time.monotonic() - start
     classes = classify.get_output(interpreter, 1, args.threshold)
-    printf(classes)
+    for klass in classes:
+        print('%s: %.5f' % (labels.get(klass.id, klass.id), klass.score))
 
     # All the results have been drawn on the frame, so it's time to display it.
     cv2.imshow('Object detector', frame)
