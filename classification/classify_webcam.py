@@ -81,13 +81,8 @@ while(True):
     if floating_model:
         input_data = (np.float32(input_data) - input_mean) / input_std
 
-    # Perform the actual detection by running the model with the image as input
-    interpreter.set_tensor(input_details[0]['index'], input_data)
-    interpreter.invoke()
-
     size = classify.input_size(interpreter)
-    image = Image.open(args.input).convert('RGB').resize(size, Image.ANTIALIAS)
-    classify.set_input(interpreter, image)
+    classify.set_input(interpreter, input_data)
 
     start = time.monotonic()
     interpreter.invoke()
