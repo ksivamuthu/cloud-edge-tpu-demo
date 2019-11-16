@@ -69,6 +69,7 @@ Note: The first inference on Edge TPU is slow because it includes loading the mo
 b`kayak`: 0.76562
 ```
 
+
 ## Object Detection
 
 The object detection script runs the webcam from Raspberry Pi and run the object detection using the [CocoSSD MobileNet](https://storage.googleapis.com/download.tensorflow.org/models/tflite/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip)
