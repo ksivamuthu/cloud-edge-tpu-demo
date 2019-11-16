@@ -88,7 +88,7 @@ while(True):
     start = time.monotonic()
     interpreter.invoke()
     inference_time = time.monotonic() - start
-    classes = classify.get_output(interpreter, args.top_k, args.threshold)
+    classes = classify.get_output(interpreter, 1, args.threshold)
     printf(classes)
 
     # All the results have been drawn on the frame, so it's time to display it.
