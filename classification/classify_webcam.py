@@ -44,12 +44,29 @@ PATH_TO_CKPT = os.path.join(CWD_PATH, MODEL_NAME, GRAPH_NAME)
 # Path to label map file
 PATH_TO_LABELS = os.path.join(CWD_PATH, MODEL_NAME, LABELMAP_NAME)
 
-# Load the label map
-with open(PATH_TO_LABELS, 'r') as f:
-    labels = [line.strip() for line in f.readlines()]
 
-if labels[0] == '???':
-    del(labels[0])
+def load_labels(path, encoding='utf-8'):
+    """Loads labels from file (with or without index numbers).
+
+    Args:
+      path: path to label file.
+      encoding: label file encoding.
+    Returns:
+      Dictionary mapping indices to labels.
+    """
+    with open(path, 'r', encoding=encoding) as f:
+        lines = f.readlines()
+        if not lines:
+            return {}
+
+        if lines[0].split(' ', maxsplit=1)[0].isdigit():
+            pairs = [line.split(' ', maxsplit=1) for line in lines]
+            return {int(index): label.strip() for index, label in pairs}
+        else:
+            return {index: line.strip() for index, line in enumerate(lines)}
+
+
+labels = load_labels(PATH_TO_LABELS)
 
 # Load the Tensorflow Lite model and get details
 interpreter = Interpreter(model_path=PATH_TO_CKPT,  experimental_delegates=[
