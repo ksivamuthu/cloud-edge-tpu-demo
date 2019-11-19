@@ -47,6 +47,17 @@ CPU/GPU:
 python3 classify_image_non_edge.py --model models/boat.tflite --label models/boat_labels.txt --input images/boat1.jpg
 ```
 
+Initializing TF Lite interpreter...
+INFO: Initialized TensorFlow Lite runtime.
+----INFERENCE TIME----
+111.8ms
+110.0ms
+107.0ms
+112.0ms
+110.8ms
+-------RESULTS--------
+b`kayak`: 0.7523
+
 With Edge TPU - USB Accelerator
 
 ```bash
